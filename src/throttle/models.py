@@ -15,3 +15,20 @@ class Consumer(models.Model):
 
     class Meta:
         unique_together = (('user', 'ip'),)
+        
+class ConsumerAccess(models.Model):
+    
+    consumer = models.ForeignKey(Consumer)
+    count = models.CharField(max_length=150)
+    scope = models.IntegerField(default=DEFAULT_VALUE)
+    date = models.DateTimeField(blank=True)
+    
+    def request_date(self):
+        return self.date
+    
+    def reset_count(self):
+        self.count = VALUE_AFTER_USED
+        self.date()
+        
+    class Meta:
+        unique_together = (('consumer', 'scope'),)
