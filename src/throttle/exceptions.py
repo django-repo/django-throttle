@@ -9,6 +9,9 @@ class RateLimitExceeded(PermissionDenied):
 class ThrottleCoolDownNotDefined(ImproperlyConfigured):
     pass
 
+class TimezoneNotDefined(ImproperlyConfigured):
+    pass
+
 #class ThrottlePreventFunctionNotDefined(ImproperlyConfigured):
 #    pass
 
