@@ -9,7 +9,7 @@ class BaseThrottle:
     """
 
     def allow_request(self, request, view):
-        raise NotImplementedError('Requested for throttling must be set')
+        raise NotImplementedError('.allow_request() must be set')
 
     def get_ident(self, request):
         xff = request.META.get('HTTP_X_FORWARDED_FOR')
