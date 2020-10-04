@@ -2,6 +2,32 @@ from collections import Counter
 from rest_framework.throttling import SimpleRateThrottle
 from django.contrib.auth.models import User
 
+# WIP: check again later
+class BaseThrottle:
+    """
+    Base rate throttling of requests.
+    """
+
+    def allow_request(self, request, view):
+        raise NotImplementedError('Requested for throttling must be set')
+
+    def get_ident(self, request):
+        xff = request.META.get('HTTP_X_FORWARDED_FOR')
+        remote_addr = request.META.get('REMOTE_ADDR')
+        num_proxies = api_settings.NUM_PROXIES
+
+	# if num proxies is more than 0, use HTTP_X_FORWARDED_FOR
+        if num_proxies is not None:
+            if num_proxies == 0 or xff is None:
+                return remote_addr
+            addrs = xff.split(',')
+            client_addr = addrs[-min(num_proxies, len(addrs))]
+            return client_addr.strip()
+
+        return ''.join(xff.split()) if xff else remote_addr
+
+    def wait(self):
+        return None
 
 class PreventUserThrottle(SimpleRateThrottle):
 
