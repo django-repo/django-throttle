@@ -8,9 +8,3 @@ class RateLimitExceeded(PermissionDenied):
 
 class ThrottleCoolDownNotDefined(ImproperlyConfigured):
     pass
-
-#class ThrottlePreventFunctionNotDefined(ImproperlyConfigured):
-#    pass
-
-#class ThrottleImproperlyConfigure(ImproperlyConfigured):
-#    pass
