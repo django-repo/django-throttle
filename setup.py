@@ -4,14 +4,14 @@ import io
 import os
 import re
 
-with io.open('lru/version.py', 'rt', encoding='utf-8') as f:
+with io.open('throttle/version.py', 'rt', encoding='utf-8') as f:
     version = re.search(r"__version__ = '(.*?)'", f.read()).group(1)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="lruheap",
+    name="django-throttle",
     version=version,
     author="Andi Gortz",
     # author_email=set email here,
