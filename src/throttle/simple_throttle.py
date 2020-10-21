@@ -1,3 +1,7 @@
+import time
+from rest_framework.settings import api_settings
+from django.core.exceptions import ImproperlyConfigured
+
 class SimpleRateThrottle(BaseThrottle):
     cache = default_cache
     timer = time.time
